@@ -1,0 +1,7 @@
+class Constants:
+
+  GRAVITY = 9.8
+  TERMINAL_VELOCITY = 30  
+
+  SCREEN_WIDTH = 800
+  SCREEN_HEIGHT = 600

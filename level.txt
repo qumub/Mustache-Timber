@@ -1,0 +1,12 @@
+P = Player Start Position
+E = Enemy
+- = Ground platform  
+# = Brick platform
+
+Level 1:
+--------
+P                    
+-#-#-#-#-#-#-#-#-#-#-# 
+  E           E
+         #
+         #
