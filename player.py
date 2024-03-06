@@ -1,33 +1,36 @@
 import pygame
+from sprite import Sprite
 from constants import Constants
 
-class Player(pygame.sprite.Sprite):
-    
+class Player(Sprite):
+    """Класс игрока"""
     speed = 5 
     direction = 0 # 0 - стоит, 1 - вправо, -1 - влево
-    
-    def __init__(self, camera):
-        self.camera = camera
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((50, 50))
-        self.image.fill(pygame.Color('red'))
-        self.rect = self.image.get_rect()  
-        self.rect.center = (400, 300)
-        self.speed = 5
+    # Инициализация 
+    def __init__(self, x, y):
+        """Инициализация игрока"""
+        super().__init__()
+        self.image = pygame.image.load("player.png") 
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
 
+    # Обработка ввода
     def handle_input(input):
         if input.right:
             direction = 1  
         if input.left:
             direction = -1
         if input.up:
-            self.dy = -JUMP_POWER 
-            self.y += self.dy
-            self.dy += GRAVITY 
-        if input.no_key_pressed:
+            self.dy = -JUMP_POWER
+            self.y += self.dy 
+            self.dy += GRAVITY
+        if not input.no_key_pressed:
             direction = 0
 
+
     def update(self):
+        self.handle_input()
         self.camera.update(self)
         self.y += self.dy
         GRAVITY = Constants.GRAVITY
@@ -46,7 +49,7 @@ class Player(pygame.sprite.Sprite):
         if self.velocity.y > TERMINAL_VELOCITY:
             self.velocity.y = TERMINAL_VELOCITY
 
-    
+    # Логика перемещения
     def move_left(self):
         self.rect.x -= self.speed
         
@@ -73,6 +76,10 @@ class Player(pygame.sprite.Sprite):
         pass
 
     def draw(self, screen):
+        pass
+
+    # Взаимодействие с физикой 
+    def apply_physics (self):
         pass
 
         
